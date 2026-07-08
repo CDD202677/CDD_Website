@@ -343,24 +343,10 @@ body {
     padding: 0 5%;
 }
 
-/* Forces all 4 Core Features to lock on the exact same row on desktop viewports */
-@media (min-width: 1025px) {
-    .features-grid { 
-        display: grid !important; 
-        grid-template-columns: repeat(4, 1fr) !important; 
-        gap: 20px !important; 
-    }
-    .feature-item {
-        padding: 30px 20px !important;
-    }
-}
-
-@media (max-width: 1024px) {
-    .features-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-        gap: 30px; 
-    }
+.features-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
 }
 
 .feature-item { 
@@ -391,6 +377,7 @@ body {
     color: var(--text-muted);
 }
 
+/* Statistics Numerical Counters */
 .stats-container {
     max-width: 1200px;
     margin: 60px auto 20px auto;
