@@ -271,3 +271,140 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+(function() {
+  function initAccordion() {
+    try {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.log("Lucide icons rendering queued.");
+    }
+
+    // Select the interactive header bars
+    const accordionHeaders = document.querySelectorAll(".kr-accordion-header");
+    
+    if (accordionHeaders.length === 0) {
+      setTimeout(initAccordion, 50);
+      return;
+    }
+
+    accordionHeaders.forEach(header => {
+      header.removeEventListener("click", handleAccordionClick);
+      header.addEventListener("click", handleAccordionClick);
+    });
+  }
+
+  function handleAccordionClick(e) {
+    e.preventDefault();
+
+    const accordionItem = this.parentElement;
+    const content = this.nextElementSibling;
+    const contentInner = content.querySelector(".kr-accordion-content-inner");
+    const isOpen = accordionItem.classList.contains("active");
+
+    // Close all other open accordion rows smoothly
+    document.querySelectorAll(".kr-accordion-item").forEach(item => {
+      if (item !== accordionItem) {
+        item.classList.remove("active");
+        const itemHeader = item.querySelector(".kr-accordion-header");
+        if (itemHeader) itemHeader.setAttribute("aria-expanded", "false");
+        const itemContent = item.querySelector(".kr-accordion-content");
+        if (itemContent) {
+          itemContent.style.setProperty("max-height", null);
+        }
+      }
+    });
+
+    // Toggle the current clicked dropdown item
+    if (!isOpen) {
+      accordionItem.classList.add("active");
+      this.setAttribute("aria-expanded", "true");
+      
+      // Inject the calculated height smoothly to bypass aggressive theme overrides
+      if (contentInner) {
+        const calculatedHeight = contentInner.scrollHeight + 60;
+        content.style.setProperty("max-height", calculatedHeight + "px", "important");
+      } else {
+        content.style.setProperty("max-height", "1000px", "important");
+      }
+    } else {
+      accordionItem.classList.remove("active");
+      this.setAttribute("aria-expanded", "false");
+      content.style.setProperty("max-height", "0px", "important");
+    }
+  }
+
+  // Safe window load listener loop triggers
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAccordion);
+  } else {
+    initAccordion();
+  }
+})();
+(function() {
+  function initAccordion() {
+    try {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.log("Lucide icons rendering queued.");
+    }
+
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
+    
+    if (accordionHeaders.length === 0) {
+      setTimeout(initAccordion, 50);
+      return;
+    }
+
+    accordionHeaders.forEach(header => {
+      header.removeEventListener("click", handleAccordionClick);
+      header.addEventListener("click", handleAccordionClick);
+    });
+  }
+
+  function handleAccordionClick(e) {
+    e.preventDefault();
+
+    const accordionItem = this.parentElement;
+    const content = this.nextElementSibling;
+    const contentInner = content.querySelector(".accordion-content-inner");
+    const isOpen = accordionItem.classList.contains("active");
+
+    document.querySelectorAll(".accordion-item").forEach(item => {
+      if (item !== accordionItem) {
+        item.classList.remove("active");
+        const itemHeader = item.querySelector(".accordion-header");
+        if (itemHeader) itemHeader.setAttribute("aria-expanded", "false");
+        const itemContent = item.querySelector(".accordion-content");
+        if (itemContent) {
+          itemContent.style.setProperty("max-height", null);
+        }
+      }
+    });
+
+    if (!isOpen) {
+      accordionItem.classList.add("active");
+      this.setAttribute("aria-expanded", "true");
+      
+      if (contentInner) {
+        const calculatedHeight = contentInner.scrollHeight + 60;
+        content.style.setProperty("max-height", calculatedHeight + "px", "important");
+      } else {
+        content.style.setProperty("max-height", "1000px", "important");
+      }
+    } else {
+      accordionItem.classList.remove("active");
+      this.setAttribute("aria-expanded", "false");
+      content.style.setProperty("max-height", "0px", "important");
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAccordion);
+  } else {
+    initAccordion();
+  }
+})();
