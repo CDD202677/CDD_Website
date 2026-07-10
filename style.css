@@ -206,7 +206,7 @@ body {
   }
 
   .hero-content h1{
-      font-size:1.30rem !important;
+      font-size:1.40rem !important;
       line-height:1.3 !important;
       white-space:normal !important;
       display:block !important;
@@ -218,14 +218,14 @@ body {
   .animated-text{
       display:inline !important;
       white-space:normal !important;
-      var(--accent)
+      color: var(--accent);
   }
 
 }
 
 .hero-content p { 
     font-size: 1.20rem; 
-    color: var(--text-muted);
+    color: var(--white); 
     opacity: 0.95;
     margin-bottom: 35px !important; 
     max-width: 800px;
